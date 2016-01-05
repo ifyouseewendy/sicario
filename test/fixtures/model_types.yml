@@ -4,12 +4,12 @@ one:
   name: MyText
   model_type_slug: MyText
   model_type_code: MyText
-  base_price: 1
+  base_price: 100
   model: one
 
 two:
   name: MyText
   model_type_slug: MyText
   model_type_code: MyText
-  base_price: 1
+  base_price: 100
   model: one
