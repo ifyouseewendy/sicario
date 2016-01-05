@@ -30,7 +30,9 @@ class MarginParserTest < ActiveSupport::TestCase
     assert_equal 15,  @parser.parse('a', strategy: :flexible)
     assert_equal 14,  @parser.parse('a', strategy: :flexible, case_sensative: true)
 
-    # assert_equal 436, @parser_one.parse('a', strategy: :flexible)
+    VCR.use_cassette("test_strategy_flexible") do
+      assert_equal 477, @parser_one.parse('a', strategy: :flexible)
+    end
   end
 
   def test_strategy_fixed
@@ -39,13 +41,17 @@ class MarginParserTest < ActiveSupport::TestCase
     assert_equal 1,  @parser.parse('an', strategy: :fixed)
     assert_equal 0,  @parser.parse('an', strategy: :fixed, case_sensative: true)
 
-    # assert_equal 15, @parser_two.parse('status', strategy: :fixed)
+    VCR.use_cassette("test_strategy_fixed") do
+      assert_equal 15, @parser_two.parse('status', strategy: :fixed)
+    end
   end
 
   def test_strategy_prestige
     assert_equal 1,   @parser.parse('p', strategy: :prestige)
 
-    # assert_equal 102, @parser_three.parse('pubDate', strategy: :prestige)
+    VCR.use_cassette("test_strategy_prestige") do
+      assert_equal 51, @parser_three.parse('pubdate', strategy: :prestige)
+    end
   end
 end
 
