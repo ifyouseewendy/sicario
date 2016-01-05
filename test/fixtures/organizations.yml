@@ -23,3 +23,21 @@ dealer:
   public_name: MyText
   type: 'Dealer'
   pricing_policy: 'Prestige'
+
+flexible:
+  name: MyText
+  public_name: MyText
+  type: 'Service'
+  pricing_policy: 'Flexible'
+
+fixed:
+  name: MyText
+  public_name: MyText
+  type: 'Service'
+  pricing_policy: 'Fixed'
+
+prestige:
+  name: MyText
+  public_name: MyText
+  type: 'Service'
+  pricing_policy: 'Prestige'
