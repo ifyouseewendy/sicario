@@ -40,5 +40,6 @@ group :development, :test do
   gem 'minitest-focus'
   gem 'vcr'
   gem 'webmock'
+  gem 'mocha'
 end
 
