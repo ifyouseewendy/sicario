@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  model_type_slug: MyText
+  model_type_code: MyText
+  base_price: 1
+  model: one
+
+two:
+  name: MyText
+  model_type_slug: MyText
+  model_type_code: MyText
+  base_price: 1
+  model: one
