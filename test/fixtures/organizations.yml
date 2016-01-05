@@ -3,11 +3,23 @@
 one:
   name: MyText
   public_name: MyText
-  type: MyText
-  pricing_policy: MyText
+  type: 'Service'
+  pricing_policy: 'Flexible'
 
-two:
+show_room:
   name: MyText
   public_name: MyText
-  type: MyText
-  pricing_policy: MyText
+  type: 'ShowRoom'
+  pricing_policy: 'Flexible'
+
+service:
+  name: MyText
+  public_name: MyText
+  type: 'Service'
+  pricing_policy: 'Fixed'
+
+dealer:
+  name: MyText
+  public_name: MyText
+  type: 'Dealer'
+  pricing_policy: 'Prestige'
