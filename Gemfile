@@ -32,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Slug
+gem 'friendly_id', '~> 5.1.0'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
