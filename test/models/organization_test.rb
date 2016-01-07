@@ -34,4 +34,15 @@ class OrganizationTest < ActiveSupport::TestCase
       end
     end
   end
+
+  def test_total_price
+    organizations(:flexible).stubs(:margin).returns(100)
+    assert_equal 100*100/100, organizations(:flexible).total_price(base_price: 100)
+
+    organizations(:fixed).stubs(:margin).returns(100)
+    assert_equal 100+100, organizations(:fixed).total_price(base_price: 100)
+
+    organizations(:prestige).stubs(:margin).returns(100)
+    assert_equal 100+100, organizations(:prestige).total_price(base_price: 100)
+  end
 end

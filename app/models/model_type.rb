@@ -5,12 +5,8 @@ class ModelType < ActiveRecord::Base
     model.organization
   end
 
-  def margin
-    organization.margin
-  end
-
   def total_price
-    base_price * margin
+    organization.total_price(base_price: base_price)
   end
 
   def display(*fields)

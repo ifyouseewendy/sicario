@@ -12,6 +12,14 @@ class Organization < ActiveRecord::Base
     pricing_policy.downcase
   end
 
+  def total_price(base_price:)
+    case policy.to_sym
+    when :flexible  then base_price * margin / 100
+    when :fixed     then base_price + margin
+    when :prestige  then base_price + margin
+    end
+  end
+
   private
 
     def query

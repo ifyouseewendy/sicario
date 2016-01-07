@@ -22,9 +22,9 @@ class ModelsControllerTest < ActionController::TestCase
 
     data = JSON.parse(response.body)
     assert data.has_key?('model_type')
-    assert_equal '330i'   , data['model_type']['name']
-    assert_equal 100      , data['model_type']['base_price']
-    assert_equal 100*1000 , data['model_type']['total_price']
+    assert_equal '330i'       , data['model_type']['name']
+    assert_equal 100          , data['model_type']['base_price']
+    assert_equal 100*1000/100 , data['model_type']['total_price']
   end
 
   def test_index_error_control
