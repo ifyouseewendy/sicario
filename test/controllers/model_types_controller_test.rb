@@ -5,6 +5,8 @@ class ModelTypesControllerTest < ActionController::TestCase
     models(:one).save # enable slug after init from fixtures
 
     ModelType.any_instance.stubs(:total_price).returns(1000)
+
+    request.headers["X-Sicario-Authorization"] = ENV['APIKEY']
   end
 
   def test_index_route

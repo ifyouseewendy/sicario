@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'api#heartbeat'
+
   resources :models, only: [] do
     resources :model_types, only: [:index]
 
