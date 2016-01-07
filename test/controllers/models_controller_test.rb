@@ -4,7 +4,7 @@ class ModelsControllerTest < ActionController::TestCase
   def setup
     models(:one).save # enable slug after init from fixtures
 
-    ModelType.any_instance.stubs(:total_price).returns(1000)
+    Organization.any_instance.stubs(:margin).returns(1000)
   end
 
   def test_model_types_price_route
@@ -13,4 +13,16 @@ class ModelsControllerTest < ActionController::TestCase
       { controller: 'models', action: 'model_types_price', id: 'one', model_type_slug: '330i' }
     )
   end
+
+  def test_model_types_price_normal_flow
+    post(:model_types_price, {id: 'one', model_type_slug: '330i', base_price: 100})
+    assert_response(:success)
+
+    data = JSON.parse(response.body)
+    assert data.has_key?('model_type')
+    assert_equal '330i'   , data['model_type']['name']
+    assert_equal 100      , data['model_type']['base_price']
+    assert_equal 100*1000 , data['model_type']['total_price']
+  end
+
 end
