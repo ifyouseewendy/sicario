@@ -1,21 +1,31 @@
 class ModelTypesController < ApplicationController
   def index
-    model_types = model.model_types.reduce([]) do |ary, model_type|
-      ary << {
-        name: model_type.name,
-        total_price: model_type.total_price
-      }
+    begin
+      model_types = model.model_types.reduce([]) do |ary, model_type|
+        ary << {
+          name: model_type.name,
+          total_price: model_type.total_price
+        }
+      end
+
+      render json: \
+        {
+          models: [
+            {
+              name: model.name,
+              model_types: model_types
+            }
+          ]
+        }
+    rescue => e
+      case e
+      when ActiveRecord::RecordNotFound
+        render json: {error: "Model not Found: #{params[:model_id]}"}, status: :not_found
+      else
+        render json: {error: 'Unknown failure', message: e.message}, status: :internal_server_error
+      end
     end
 
-    render json: \
-      {
-        models: [
-          {
-            name: model.name,
-            model_types: model_types
-          }
-        ]
-      }
   end
 
   private
