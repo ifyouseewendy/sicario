@@ -2,10 +2,10 @@
 
 one:
   name: MyText
-  model_slug: MyText
+  model_slug: 'one'
   organization: one
 
 two:
   name: MyText
-  model_slug: MyText
+  model_slug: 'two'
   organization: one
