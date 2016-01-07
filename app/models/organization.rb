@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  has_many :models
+  has_many :models, dependent: :destroy
 
   validates_inclusion_of :pricing_policy, in: %w(Flexible Fixed Prestige)
 
