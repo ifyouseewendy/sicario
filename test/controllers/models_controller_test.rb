@@ -6,7 +6,7 @@ class ModelsControllerTest < ActionController::TestCase
 
     Organization.any_instance.stubs(:margin).returns(1000)
 
-    request.headers["X-Sicario-Authorization"] = ENV['APIKEY']
+    set_auth_header
   end
 
   def test_model_types_price_route

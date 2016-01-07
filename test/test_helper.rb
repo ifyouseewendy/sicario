@@ -14,4 +14,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def set_auth_header
+    request.headers["X-Sicario-Authorization"] = ENV['APIKEY']
+  end
 end
+

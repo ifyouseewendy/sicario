@@ -5,7 +5,7 @@ class ApiControllerTest < ActionController::TestCase
     get(:heartbeat)
     assert_response 401
 
-    request.headers["X-Sicario-Authorization"] = ENV['APIKEY']
+    set_auth_header
     get(:heartbeat)
     assert_response :success
   end
