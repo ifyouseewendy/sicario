@@ -1,12 +1,7 @@
 class ModelTypesController < ApplicationController
   def index
     begin
-      model_types = model.model_types.reduce([]) do |ary, model_type|
-        ary << {
-          name: model_type.name,
-          total_price: model_type.total_price
-        }
-      end
+      model_types = model.model_types.map{ |mt| mt.display(:name, :total_price) }
 
       render json: \
         {

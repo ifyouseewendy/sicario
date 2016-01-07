@@ -6,14 +6,9 @@ class ModelsController < ApplicationController
         base_price: permitted_params[:base_price].to_i
       )
 
-      render json: \
-        {
-          model_type: {
-            name: model_type.name,
-            base_price: model_type.base_price,
-            total_price: model_type.total_price
-          }
-        }
+      render json: {
+        model_type: model_type.display(:name, :base_price, :total_price)
+      }
     rescue => e
       case e
       when ActiveRecord::RecordNotFound
