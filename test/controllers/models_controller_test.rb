@@ -25,4 +25,11 @@ class ModelsControllerTest < ActionController::TestCase
     assert_equal 100*1000 , data['model_type']['total_price']
   end
 
+  def test_index_error_control
+    post(:model_types_price, {id: 'unknown', model_type_slug: '330i', base_price: 100})
+    assert_response(:missing)
+
+    data = JSON.parse(response.body)
+    assert data.has_key?('error')
+  end
 end
