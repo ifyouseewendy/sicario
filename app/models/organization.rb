@@ -22,6 +22,10 @@ class Organization < ActiveRecord::Base
 
   private
 
+    def self.inheritance_column
+      nil
+    end
+
     def query
       Rails.application.secrets.margin_queries[policy]
     end
