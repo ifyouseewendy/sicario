@@ -1,32 +1,30 @@
 class ModelTypesController < ApplicationController
+  before_filter :find_model, only: [:index]
+
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: {error: "Model not Found"}, status: :not_found
+  end
+
   def index
-    begin
-      model_types = model.model_types.map{ |mt| mt.display(:name, :total_price) }
-
-      render json: \
-        {
-          models: [
-            {
-              name: model.name,
-              model_types: model_types
-            }
-          ]
-        }
-    rescue => e
-      case e
-      when ActiveRecord::RecordNotFound
-        render json: {error: "Model not Found: #{params[:model_id]}"}, status: :not_found
-      else
-        render json: {error: 'Unknown failure', message: e.message}, status: :internal_server_error
-      end
-    end
-
+    render json: \
+      {
+        models: [
+          {
+            name: @model.name,
+            model_types: model_types
+          }
+        ]
+      }
   end
 
   private
 
-    def model
-      Model.friendly.find(permitted_params[:model_id])
+    def find_model
+      @model ||= Model.friendly.find(permitted_params[:model_id])
+    end
+
+    def model_types
+      @model.model_types.map{ |mt| mt.display(:name, :total_price) }
     end
 
     def permitted_params
