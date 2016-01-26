@@ -1,2 +1,0 @@
-class Dealer < Organization
-end
